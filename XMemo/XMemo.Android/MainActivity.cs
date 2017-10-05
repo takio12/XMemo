@@ -30,7 +30,18 @@ namespace XMemo.Droid
                 Text = "",
             };
             DisplayMemo();
-		}
+
+            var subjectText = FindViewById<EditText>(Resource.Id.SubjectText);
+            subjectText.TextChanged += (s, e) =>
+            {
+                MemoHolder.Current.Memo.Subject = subjectText.Text;
+            };
+            var memoText = FindViewById<EditText>(Resource.Id.MemoText);
+            memoText.TextChanged += (s, e) =>
+            {
+                MemoHolder.Current.Memo.Text = memoText.Text;
+            };
+        }
         private void DisplayMemo()
         {
             var memo = MemoHolder.Curren.Memo;
