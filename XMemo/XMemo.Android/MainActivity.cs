@@ -12,7 +12,6 @@ namespace XMemo.Droid
 	[Activity (Label = "XMemo.Android", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-		int count = 1;
 
 		protected override void OnCreate (Bundle bundle)
 		{
@@ -21,15 +20,26 @@ namespace XMemo.Droid
 			// Set our view from the "main" layout resource
 			SetContentView (Resource.Layout.Main);
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button> (Resource.Id.myButton);
-			
-			button.Click += delegate {
-				button.Text = string.Format ("{0} clicks!", count++);
-			};
+            // Get our button from the layout resource,
+            // and attach an event to it
+
+            MemoHolder.Current.Memo = new Memo();
+            {
+                Date = DateTime.Now,
+                Subject = "",
+                Text = "",
+            };
+            DisplayMemo();
 		}
-	}
+        private void DisplayMemo()
+        {
+            var memo = MemoHolder.Curren.Memo;
+            FindViewById<EditText>(Resource.Id.DateText).Text = string.
+                Format("{0:yyyy/MM/dd}", memo.Date);
+            FindViewById<EditText>(Resource.Id.SubjectText).Text = memo.Subject;
+            FindViewById<TextView>(Resource.Id.MemoText).Text = memo.Text;
+        }
+    }
 }
 
 

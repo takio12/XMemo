@@ -4,4 +4,38 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="25px"
-    android:minHeight="25px" />
+    android:minHeight="25px">
+    <TextView
+        android:text="日付"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/DateText"
+        android:inputType="date"
+        android:focusable="false"
+        android:clickable="true" />
+    <TextView
+        android:text="件名:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SubjectText" />
+    <TextView
+        android:text="メモ"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/MemoText"
+        android:lines="8"
+        android:gravity="left|top" />
+    <Button
+        android:text="読み込み"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/LoadButton" />
+    <Button
+        android:text="保存"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SaveButton" />
+</LinearLayout>
