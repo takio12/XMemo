@@ -15,13 +15,24 @@ namespace XMemo.iOS
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			// Perform any additional setup after loading the view, typically from a nib.
-			Button.AccessibilityIdentifier = "myButton";
-			Button.TouchUpInside += delegate {
-				var title = string.Format ("{0} clicks!", count++);
-				Button.SetTitle (title, UIControlState.Normal);
-			};
+            // Perform any additional setup after loading the view, typically from a nib.
+
+            MemoHolder.Current.Memo = new InsufficientMemoryException()
+            {
+                Date = DateTime.Now,
+                Subject = "",
+                Text = "",
+            };
+            DisplayMemo();
 		}
+
+        private void DisplayMemo()
+        {
+            var memo = MemoHolder.Current.Memo;
+            DateText.Text = string.Format("{0:yyyy/MM/dd}", memo.Date);
+            SubjectText.Text = memo.Subject;
+            MemoText.Text = memo.Text;
+        }
 
 		public override void DidReceiveMemoryWarning ()
 		{

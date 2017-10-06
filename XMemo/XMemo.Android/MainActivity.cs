@@ -23,7 +23,7 @@ namespace XMemo.Droid
             // Get our button from the layout resource,
             // and attach an event to it
 
-            MemoHolder.Current.Memo = new Memo();
+            MemoHolder.Current.Memo = new Memo()
             {
                 Date = DateTime.Now,
                 Subject = "",
@@ -41,7 +41,24 @@ namespace XMemo.Droid
             {
                 MemoHolder.Current.Memo.Text = memoText.Text;
             };
+
+            FindViewById<EditText>(Resource.Id.DateText).Click += DateText_Click;
         }
+
+        private void DateText_Click(object sender,EventArgs e)
+        {
+            var datePicker = new MyDatePicker();
+            datePicker.InitialDate = MemoHolder.Current.Memo.Date;
+            datePicker.Selected += (s2, e2) =>
+            {
+                MemoHoldre.Current.Memo.Date = e2.SelectedDate;
+                DisplayMemo();
+            };
+            datePicker.show(FragmentManager, "tag");
+        }
+
+
+
         private void DisplayMemo()
         {
             var memo = MemoHolder.Curren.Memo;
